@@ -84,6 +84,10 @@ echo('<br>');
 
                 echo(letraDNI('6564765888'));
 
+                $anyomesDiaActual= date("y-m-d");
+
+                echo($anyomesDiaActual);
+
                 
 
 ?>

@@ -4,6 +4,8 @@
 
 interface ValidacionVoto{
 
+    
+
     public function horavoto() {
 
         $hora = time();
@@ -64,9 +66,21 @@ interface ValidacionVoto{
                 
                 }
 
-                public function Caducidad($fecha){
+                public function Caducidad($caducidad, $fechacaducidad){
 
+                    $anyomesDiaActual= date("y-m-d");
 
+if($this->caducidad == $caducidad){
+
+    list($Y, $m, $d) = explode('-', '{$fechacaducidad}');
+
+    echo('FECHA DE CADUCIDAD = ' . list($Y, $m, $d));
+
+} else if($fechacaducidad => $mesDiaActual) {
+
+echo('FECHA DNI CADUCADA');
+
+}
                 }
 }
 

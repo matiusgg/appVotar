@@ -31,6 +31,26 @@ print_r($letraOK);
 echo('</pre>');
 
 if($letraDNI == $letraOK){
+
+    // INICIAR SECCION: Podemos iniciae
+
+    // VARIABLES DE SESION
+    // $_SESSION: Nos permite almacenar la informacion para despues abrir de nuevo $_SESSION en otro arhivo para enviar la informacion.
+// Aqui lo que hacemos es abrir la seccion en la pagina para despues con la funcion session_start() que nos permite abrir seccion en ese nuevo archivo para poder compartir la informacion con $_SESSION en ese  otro archivo; abrimos $_SECCION con cualquier nombre pero identificativo y con '=' deifinimos el tipo de informacion que queremos enviar a otros archivos o sitios
+   // $_SESSION['nombre_de_usuario'] = 'Toni';
+
+   // LAs variables de seccion.
+
+   // Ejm:
+
+   session_start();
+
+   $_SESSION['dni'] = $dnicompleto;
+   $_SESSION['longituddni'] = $longituddni;
+   $_SESSION['letraOK'] = $letraOK;
+//    var_dump($letraOK);
+   
+
     header('Location: php/datosvotacion.php');
 } else {
     echo('<br>');
