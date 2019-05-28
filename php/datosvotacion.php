@@ -1,6 +1,6 @@
 <?php
 
-
+include_once('../models/Votante.php');
 // INICIAR SECCION: Nos permite enviar informacion de un sitio a otro. cada veza que pongamos session_start();. y definiendo $_SESSION_SESSION[inombre cualquiera pero que identifique con la informacion que queremos enviar.]; 
 // Queremos recuperar el dato que estaba en index., el dato de $
 

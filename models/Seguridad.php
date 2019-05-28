@@ -42,9 +42,9 @@ public function letraDNI ($dni) {
 
     public function setSolonumeros($dni) {
 
-      $this->$dni = true;
+//  if($dni)
 
-      
+
     }
 
 
