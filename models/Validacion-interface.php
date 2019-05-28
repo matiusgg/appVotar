@@ -13,7 +13,11 @@ interface ValidacionVoto{
             }
         
         
-            function edad($fecha)  {
+            function edad($fechanacimiento, $mostrarfecha)  {
+
+                $this->$fechanacimiento = true;
+
+                if($this->$fechanacimiento = $this->fechanacimiento){
 
                 // LIST: Donde $Y: Año, $m: Mes, $d: dia.  
                 
@@ -25,7 +29,7 @@ interface ValidacionVoto{
                 //list($Y, $m, $d) = explode('-', $fecha);
                 // Aqui lo que hicimos fue lo mismo que el anterior, solo que con this-> llamamos a la variable para hacer parte de la funcion
                 
-                list($Y, $m, $d) = explode('-', '{$this->fechanacimiento}');
+ list($Y, $m, $d) = explode('-', $mostrarfecha);
                 
                 
                 
@@ -40,20 +44,37 @@ interface ValidacionVoto{
                 // Ahora condicionamos 
                 
                 // ejm: 05-13 < 06-12. Aqui lo que hicimos es si mesdiaactual es menor a la fecha (que en este caso es de nacimiento), 
-                
-                if( $mesDiaActual < $m.$d) {
+                $edad = $añoactual - $Y -1;
+                // if($edad < 18) {
+            
+                //     echo('ERES MENOR DE EDAD, NO PUEDES VOTAR');
+                // }
+            
+                // echo('<br>');
+            
+                if(($mesDiaActual < $m.$d) && ($edad >= 18)) {
                 
                     // Es menor a 1 porque si llega a coincidar en la mismo año pero con meses difernetes, entonces
                     // tu no cumples, pero si el mes y el dia coinciden entonces aun no cumples todavia por lo cual se te baja un año, hasta que no cumplas no se te quita el -1
                 
                 // Aqui le decimos lo mismo que con mes y dia, que me saque la diferencia entre los dos años
-                    return ( $añoactual - $Y -1);
+              
+                    return ($edad);
+            
                 } 
                 
                 else {
-                
+                    echo('ERES MENOR DE EDAD, NO PUEDES VOTAR. Tu edad es = ');
+                    
                     return ( $añoactual - $Y);
+            
+                    
                 }
+                
+                // if(($mesDiaActual < $m.$d) && ($edad <= 18)) {
+            
+            
+                // }
                 
                 // SHORTHAND: 
                 
@@ -63,25 +84,37 @@ interface ValidacionVoto{
                 //return( $mesDiaActual < $m.$d ? $añoactual - $Y -1 : 
                 //$añoactual - $Y
                 //);
+            
                 
                 }
 
+            }
+
                 public function Caducidad($caducidad, $fechacaducidad){
 
-                    $anyomesDiaActual= date("y-m-d");
+                    $this->$caducidad = true;
 
-if($this->caducidad == $caducidad){
+$anyomesDiaActual= date("y-m-d");
+list($Y, $m, $d) = explode('-', $fechacaducidad);
 
-    list($Y, $m, $d) = explode('-', '{$fechacaducidad}');
+if(($this->$caducidad = $this->caducidad) && ($fechacaducidad <= $anyomesDiaActual)){
 
-    echo('FECHA DE CADUCIDAD = ' . list($Y, $m, $d));
-
-} else if($fechacaducidad => $mesDiaActual) {
+          
+                 echo('FECHA DNI CADUCADA');
+}
+ else if(($this->$caducidad = $this->caducidad) && ($fechacaducidad >= $anyomesDiaActual)) {
 
 echo('FECHA DNI CADUCADA');
 
+echo('FECHA DE CADUCIDAD = ' . $fechacaducidad);
+
+
 }
-                }
+
+
+}
+
+
 }
 
 ?>

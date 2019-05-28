@@ -36,7 +36,7 @@ if($letraDNI == $letraOK){
 
     // VARIABLES DE SESION
     // $_SESSION: Nos permite almacenar la informacion para despues abrir de nuevo $_SESSION en otro arhivo para enviar la informacion.
-// Aqui lo que hacemos es abrir la seccion en la pagina para despues con la funcion session_start() que nos permite abrir seccion en ese nuevo archivo para poder compartir la informacion con $_SESSION en ese  otro archivo; abrimos $_SECCION con cualquier nombre pero identificativo y con '=' deifinimos el tipo de informacion que queremos enviar a otros archivos o sitios
+// Aqui lo que hacemos es abrir la seccion en la pagina para despues con la funcion session_start() que nos permite abrir seccion en ese nuevo archivo para poder compartir la informacion con $_SESSION en ese  otro archivo; abrimos $_SECCION con cualquier nombre pero identificativo y con '=' deifinimos el tipo de informacion que queremos enviar a otros archivos o sitios, ya sean variables, $POST, $_REQUEST
    // $_SESSION['nombre_de_usuario'] = 'Toni';
 
    // LAs variables de seccion.

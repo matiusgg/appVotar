@@ -1,8 +1,8 @@
 <?php
 
 
-// INICIAR SECCION: Nos permite enviar informacion de un sitio a otro. cada veza que pongamos session_start();. y definiendo 4_SESSION[inombre cualquiera pero que identifique con la informacion que queremos enviar.]; 
-// Queremos recuperar el dato que estaba en inde., el dato de $
+// INICIAR SECCION: Nos permite enviar informacion de un sitio a otro. cada veza que pongamos session_start();. y definiendo $_SESSION_SESSION[inombre cualquiera pero que identifique con la informacion que queremos enviar.]; 
+// Queremos recuperar el dato que estaba en index., el dato de $
 
 // Si tengo un archivo donde parte de el es interesante, podemos usar seecion. 
 session_start();
@@ -16,5 +16,15 @@ echo('<br>');
 echo($longitud);
 echo('<br>');
 echo($letraOKEY);
+
+// SECCION DESTROY: Permite cerrar seccion.
+
+// session_destroy();
+
+// UNSET: Permite eliminar una variable
+
+// EJM:
+
+// unset $dniusuario = $_SESSION['dni'];
 
 ?>
