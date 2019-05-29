@@ -57,6 +57,13 @@ if($letraDNI == $letraOK){
     echo('ERROR, DNI INCORRECTO O NO ENCONTRADO');
 }
 
+// $carnets = [
+
+//     $carnet1,
+//     $carnet2,
+//     $carnet3
+// ];
+
 }
 
 // $validarletra->letraDNI($numerosdni); // POnemos $numeroDNI porque el metodo que nos saca la letra de un conjunto de numeros. Por lo cual precisamente esta variable consiste en numero del dni.

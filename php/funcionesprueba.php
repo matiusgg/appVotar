@@ -130,7 +130,7 @@ echo('<br>');
 
                 function Caducidad($caducidad){
 
-$anyomesDiaActual= date("y-m-d");
+$anyomesDiaActual= date("Y-m-d");
 list($Y, $m, $d) = explode('-', $caducidad);
 
 if($caducidad <= $anyomesDiaActual){
@@ -153,7 +153,7 @@ echo('FECHA DE CADUCIDAD = ' . $caducidad);
 
 }
 echo('<br>');
-echo(Caducidad('16-03-28'));
+echo(Caducidad('2016-03-28'));
 
 
 echo('<br>');
@@ -334,120 +334,130 @@ echo('</pre>');
 
 // CLASS CARNET. CARNET SERIA lo que necesitamos para el archivo datosvotacion.php
 
-class Carnet{
+// class Carnet{
 
-    // PROPIEDADES
+//     // PROPIEDADES
 
-    private $dni;
-    private $nombre;
-    private $direccion;
-    private $fCaducidad;
-    private $fnacimiento;
-    private $mesa;
-
-
-
-    // CONSTRUCTOR:
-
-
-    public function __construct($dni, $nombre, $direccion, $fCaducidad, $fnacimiento, $mesa){
-
-$this->dni = $dni;
-$this->nombre = $nombre;
-$this->direccion = $direccion;
-$this->fcaducidad = $fCaducidad;
-$this->fnacimiento = $fnacimiento;
-
-
-//COmprobacion PROPIEDAD.
-$this->mesa = $mesa;
-
-v
-    }
-
-    // METODOS:
-
-    // METODO VISUAL
+//     private $dni;
+//     private $nombre;
+//     private $direccion;
+//     private $fCaducidad;
+//     private $fnacimiento;
+//     private $mesa;
 
 
 
-    public function visual() {
-
-        // Aquis acamos con este metodo sacamos la informacion por pantalla.
-
-        // Sacar datos principales de la persona por su DNI.
-        // Ya sea DNI; LOCALIZACION; CALLE
-
-        // TIP: Podemos poner metodos dentro de otros metodos. Aqui lo usaremos para usar los otros metodos de edad, caducidad, mesa, hora voto, etc. Para poder visualizarlo. Estos metodos deben ir en la misma clase obviamente
-
-            // Aqui podemos tener runa contabilizacion de los errores, es decir, si la edad es incorrecta, o la mesa, o la caducidad, que nos muestre los erroresay los contabilice. S tenemos:
-// Comprobacion de errores
-            // error < 1. APTO PARA VOTAR. Aqui lo que hicimos fue que si el error se cumple, sea '1'
-// Ponemos en publico los metodos que estan eprivado, lo mismo que hacemos con las propiedades en este caso al no tener parametros dentro del este metodo seria una especie de GETTER.
-
-// Declaramos la variable antes de pasar los metodos a publicos para que esta variable haga efecto dentro de los metodos.
-
-$noValido = 0;
-            $this-> menor();
-            $this-> Caducidad();
-            $this-> mesa();
-            $this-> voto();
-
-            // COndicional para que si no es pato no muestre los metodos
-
-            if($noValido < 1){
-                echo '<h2 style="color:green"> APTO PARA VOTAR </h2>';
-
-            }
-
-    }
+//     // CONSTRUCTOR:
 
 
-    // Lo pusimos privado porque no nos interesa que salgan de esta clase, no por otra parte. Pero aunque lo pongamos privado si estos metodos los introducimos dentro de un metodo con public, al final no habria problemas, pasaria algo igual que con las PROPIEDADEs que estan en privado. Que en este caso seria el metodo VISUAL
+//     public function __construct($dni, $nombre, $direccion, $fCaducidad, $fnacimiento, $mesa){
+
+// $this->dni = $dni;
+// $this->nombre = $nombre;
+// $this->direccion = $direccion;
+// $this->fcaducidad = $fCaducidad;
+// $this->fnacimiento = $fnacimiento;
 
 
-    private function menor(){
-        echo '<h2 style="color:red"> ERES MENOR VETE A ESTUDIAR </h2>';
-        // Aca hicimos que en cada metodo pongamos $noValido que ya fue declarada, y le la definimos con '+= 1', para que este no sea '0', porque '0' es que es APTO PARA VOTAR, entonces es '1', es para que cuando pase por el condicional en el cual decimos que si no es '1' es apto para votar. y el '+=' 
+// //COmprobacion PROPIEDAD.
+// $this->mesa = $mesa;
+
+
+//     }
+
+//     // METODOS:
+
+//     // METODO VISUAL
+
+
+
+//     public function visual() {
+
+//         // Aquis acamos con este metodo sacamos la informacion por pantalla.
+
+//         // Sacar datos principales de la persona por su DNI.
+//         // Ya sea DNI; LOCALIZACION; CALLE
+
+//         // TIP: Podemos poner metodos dentro de otros metodos. Aqui lo usaremos para usar los otros metodos de edad, caducidad, mesa, hora voto, etc. Para poder visualizarlo. Estos metodos deben ir en la misma clase obviamente
+
+//             // Aqui podemos tener runa contabilizacion de los errores, es decir, si la edad es incorrecta, o la mesa, o la caducidad, que nos muestre los erroresay los contabilice. S tenemos:
+// // Comprobacion de errores
+//             // error < 1. APTO PARA VOTAR. Aqui lo que hicimos fue que si el error se cumple, sea '1'
+// // Ponemos en publico los metodos que estan eprivado, lo mismo que hacemos con las propiedades en este caso al no tener parametros dentro del este metodo seria una especie de GETTER.
+
+// // Declaramos la variable antes de pasar los metodos a publicos para que esta variable haga efecto dentro de los metodos.
+
+// $noValido = 0;
+//             $this-> menor();
+//             $this-> Caducidad();
+//             $this-> mesa();
+//             $this-> voto();
+
+//             // COndicional para que si no es pato no muestre los metodos
+
+//             if($noValido < 1){
+//                 echo '<h2 style="color:green"> APTO PARA VOTAR </h2>';
+
+//             }
+
+//     }
+
+
+//     // Lo pusimos privado porque no nos interesa que salgan de esta clase, no por otra parte. Pero aunque lo pongamos privado si estos metodos los introducimos dentro de un metodo con public, al final no habria problemas, pasaria algo igual que con las PROPIEDADEs que estan en privado. Que en este caso seria el metodo VISUAL
+
+
+//     private function menor(){
+//         echo '<h2 style="color:red"> ERES MENOR VETE A ESTUDIAR </h2>';
+//         // Aca hicimos que en cada metodo pongamos $noValido que ya fue declarada, y le la definimos con '+= 1', para que este no sea '0', porque '0' es que es APTO PARA VOTAR, entonces es '1', es para que cuando pase por el condicional en el cual decimos que si no es '1' es apto para votar. y el '+=' 
         
 
-        // Si s verdad que es menor de edad, entonces es igual a 1.
-$noValido += 1;
+//         // Si s verdad que es menor de edad, entonces es igual a 1.
+// $noValido += 1;
 
-    }
+//     }
 
-    private function Caducidad(){
-        echo '<h2 style="color:red"> TU DNI ESTA CADUCADO </h2>';
-        $noValido += 1;
+//     private function Caducidad(){
+//         echo '<h2 style="color:red"> TU DNI ESTA CADUCADO </h2>';
+//         $noValido += 1;
         
-            }
+//             }
 
 
-            private function mesa(){
-                echo '<h2 style="color:red"> NO ES TU COLEGIO. TU COLEGIO ES:' .  '</h2>';
-                $noValido+= 1;
+//             private function mesa(){
+//                 echo '<h2 style="color:red"> NO ES TU COLEGIO. TU COLEGIO ES:' .  '</h2>';
+//                 $noValido+= 1;
                 
-                    }
-// Este metodo VOTO nos mostrara si es apto o no para votar.
+//                     }
+// // Este metodo VOTO nos mostrara si es apto o no para votar.
 
-                    private function voto(){
-                        echo '<h2 style="color:green"> YA HAS VOTADO, PARCERO </h2>';
-                        $noValido += 1;
+//                     private function voto(){
+//                         echo '<h2 style="color:green"> YA HAS VOTADO, PARCERO </h2>';
+//                         $noValido += 1;
                         
-                            }
+//                             }
 
 
 
-}
+// }
 
-$carnet1 = new Carnet('46454567L', 'Mariaa xd', 'Calle hola. cada 23, puerta No tiene.', '1999-03-28', '012');
-
-
-$carnet1 = new Carnet('12345678z', 'Mariaa xd', 'Calle hola. cada 23, puerta No tiene.', '1999-03-28', '012');
+// $carnet1 = new Carnet('46454567L', 'Mariaa xd', 'Calle hola. cada 23, puerta No tiene.', '1999-03-28', '012');
 
 
-$carnet1 = new Carnet('4324325t', 'Mariaa xd', 'Calle hola. cada 23, puerta No tiene.', '1999-03-28', '012');
+// $carnet1 = new Carnet('12345678z', 'Mariaa xd', 'calle las avenidas', '1999-03-28', '012');
 
-                
+
+// $carnet1 = new Carnet('4324325t', 'Mariaa xd', 'Calle pereu garau', '1999-03-28', '012');
+
+   
+
+
+// ********************************************
+// ********************************************
+// ********************************************
+// ********************************************
+// ********************************************
+
+
+
 
 ?>
