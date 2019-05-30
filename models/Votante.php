@@ -1,6 +1,6 @@
 <?php
 
-
+include_once('ValidacionVoto.php');
 // // class Votante implements ValidacionVoto{
 // class Votante {
 
@@ -51,7 +51,8 @@
 
 // CLASS CARNET. CARNET SERIA lo que necesitamos para el archivo datosvotacion.php
 
-class Carnet {
+
+class Carnet implements ValidacionVoto{
 
     // PROPIEDADES
 
@@ -62,19 +63,21 @@ class Carnet {
     private $fnacimiento;
 
     // COMPROBACION DE DATOS PARA VOTAR
-    private $colegio;
+    // private $colegio;
+    private $mesa;
     // Lo declaramos 'false' porque si es Novalido, no es correcto, a que no podria votar. Por lo cual ahora definiendolo com 'false' estaria 'desactivado' y en los metodos siguientes le declarariamos como 'true' para que se active en visual() si llega a ser noValido la informacion de la persona, es decir, que si se activa esa persona no tiene algun requisito que le permita votar.
-    private $noValido = false;
-
+    private $noValido = 0;
+// Solo lo usa
     private $yavotado = false;
     private $apto = true;
+    private $horavoto;
 
 
 
     // CONSTRUCTOR:
 
 
-    public function __construct($dni, $nombre, $direccion, $caducidad, $fnacimiento, $colegio){
+    public function __construct($dni, $nombre, $direccion, $caducidad, $fnacimiento, $mesa){
 
 $this->dni = $dni;
 $this->nombre = $nombre;
@@ -84,8 +87,10 @@ $this->fnacimiento = $fnacimiento;
 
 
 //COmprobacion PROPIEDAD.
-// $this->mesa = $mesa;
-$this->colegio = $colegio;
+
+// $this->colegio = $colegio;
+$this->mesa = $mesa;
+
 // $this->yavotado = $yavotado;
 
 
@@ -128,6 +133,36 @@ $this->colegio = $colegio;
 // Aqui le pusimo a menor(), $this->fnacimiento porque le pusimos el parametro en el metodo abajo, que en este caso es para que nos separe si hay '-' el año, mes, dia.
 
 
+
+
+$this->info();
+$this-> menor($this->fnacimiento);
+                $this-> Caducidad($this->caducidad);
+                $this-> colegio($this->direccion);
+                // $this-> siyavoto($this->dni);
+                // $this-> botones($this->apto);
+
+                echo('<li class ="botonRojo"> <a href="../index.php?dni=' . $this->dni . '" >YA HAS VOTADO</a>');
+
+        $botonRojo = fopen('../css/style.css', 'w');
+
+$contenidoRojo = "
+.botonRojo{
+    color: white;
+    background-color: red;
+        padding: 1rem;
+        font-size: 4rem;
+        box-sizing: border-box;
+        display: inline-block;
+        text-decoration: none;
+    }
+";
+
+        fwrite($botonRojo, $contenidoRojo);
+
+        fclose($botonRojo);
+
+        echo('</li>');
        
 
 
@@ -136,16 +171,36 @@ $this->colegio = $colegio;
 
             // Podriamos poner true o false. Pero si ponemos 1 o 0. Estariamos diciendo lo mismo, 1 = true y 0 = false.
 
-    if(($this->noValido != 1) && ($this->yavotado != 1)){
-                echo '<h2 style="color:green"> APTO PARA VOTAR </h2>';
+    // if(($this->noValido != 1) && ($this->yavotado != 1)){
+        
+       if($this->noValido < 1){
 
-            } else {
 
-                $this-> menor($this->fnacimiento);
-                $this-> Caducidad($this->caducidad);
-                $this-> colegio($this->direccion);
-                $this-> siyavoto($this->yavotado);
-                $this-> botones($this->apto);
+        echo('<li class ="botonVerde"> <a href="../index.php" >APTO PARA VOTAR</a>');
+
+        $botonVerde = fopen('../css/style.css', 'w');
+
+$contenidoVerde = "
+.botonVerde{
+    color: white;
+    background-color: green;
+        padding: 1rem;
+        font-size: 4rem;
+        box-sizing: border-box;
+        display: inline-block;
+        text-decoration: none;
+    }
+";
+
+        fwrite($botonVerde, $contenidoVerde);
+
+        fclose($botonVerde);
+
+        echo('</li>');
+
+                // echo '<h2 style="color:green"> APTO PARA VOTAR </h2>';
+
+                // $this->ComprobacionVoto($this->dni, $this->horavoto);
 
             }
             
@@ -158,6 +213,23 @@ $this->colegio = $colegio;
 
 
     // Lo pusimos privado porque no nos interesa que salgan de esta clase, no por otra parte. Pero aunque lo pongamos privado si estos metodos los introducimos dentro de un metodo con public, al final no habria problemas, pasaria algo igual que con las PROPIEDADEs que estan en privado. Que en este caso seria el metodo visual
+
+
+      // *************************************
+// *************************************
+// *************************************
+// *************************************
+// *************************************
+
+
+private function info(){
+
+    echo('Nombre: ' . $this->nombre . '<br>' .  
+    'DNI: ' . $this->dni . '<br>' .   
+    'Direccion: ' . $this->direccion);
+}
+
+
 
      // *************************************
 // *************************************
@@ -201,7 +273,8 @@ $this->colegio = $colegio;
     // ACTUALIZACION: Si el metodo va bien pero al momento de pasarlo a publico no te da error pero no te muestra si se aplicaron los condicionales, entonces intenta cambiar la posiciond de los condicionales, aqui me paso que el primer condicional no me lo reconocia porque estaba abajo, y ahora lo puse arriba y obviamente me lo reconocio porque esta de primero.
 
     if($edad < 18){
-        $this->noValido = true;
+        $this->noValido += 1;
+        
         
     
     
@@ -253,7 +326,7 @@ list($Y, $m, $d) = explode('-', $caducidad);
 
 if($caducidad <= $anyomesDiaActual){
 
-    $this->noValido = true;
+    $this->noValido += 1;
 
     // Lo ponemor menos porqu lo que queremos hacer es que si la caducidad es menor que la fecha actual, entonces ya no tiene validez porque ya sobrepaso la fecha estimada que tenia
           
@@ -290,6 +363,7 @@ echo('<h2 style="color:green">' . 'FECHA DE CADUCIDAD = ' . $caducidad . '</h2>'
 
             private function colegio($direccion){
 
+              
                 $colegios = [
 
                     'calle hola' => 'Colegio pepito',
@@ -297,20 +371,13 @@ echo('<h2 style="color:green">' . 'FECHA DE CADUCIDAD = ' . $caducidad . '</h2>'
                     'calle pereu garau' => 'Colegio Voludo'
                 ];
 
-              
+        
+                        
+                        $this->noValido += 1;
 
-                    if(isset($colegios[$direccion])) {
+                    echo '<h2 style="color:red"> NO ES TU Colegio. Ve a la direccion: ' . $direccion . 'Tu colegio correcto es: ' . $colegios[$direccion] . '</h2>';
 
-
-                        echo '<h2 style="color:green">TU COLEGIO ES:' . $colegios[$direccion] . '<br>' . 'TU MESA ES: ' . $this->colegio . '</h2>';
-
-
-                    } else{
-
-                        $this->noValido = true;
-
-                        echo '<h2 style="color:red"> NO ES TU Colegio. TU Colegio ES:' . $direccion . '</h2>';
-                    }
+                
                     
                     // else  if($key == $direccion){
 
@@ -327,47 +394,66 @@ echo('<h2 style="color:green">' . 'FECHA DE CADUCIDAD = ' . $caducidad . '</h2>'
 // Este metodo VOTO nos mostrara si es apto o no para votar.
 
 
+
+
  // *************************************
 // *************************************
 // *************************************
 // *************************************
 // *************************************
 
-                    private function siyavoto($yavotado){
 
-$yavotado = true;
+                    // private function ComprobacionVoto($dni, $horavoto){
 
-                        echo '<h2 style="color:red"> YA HAS VOTADO, PARCERO </h2>';
+                    //   $horavoto = date('H:i:s');
+
+                    //   echo('<br>');
+
+                    //   echo($horavoto);
+
+                    //   echo('<br>');
+
+                    //   echo($dni);
+
+
+
+                    // }
+
+// $yavotado = true;
+
+//                         echo '<h2 style="color:red"> YA HAS VOTADO, PARCERO </h2>';
 
                        
 
 
-                        $noValido = true;
+//                         $noValido = true;
                         
                             
 
-                        }
+//                         }
 
-                        private function botones($apto){
-if($apto == false){
-                            echo('<li class ="boton" style="background-color: red"> <a href="../index.php?nombre=' . $this->dni . '">VOLVER</a> </li>');
-                        }
+//                         private function botones($apto){
+// if($apto == false){
+//                             echo('<li class ="boton" style="background-color: red"> <a href="../index.php?nombre=' . $this->dni . '">VOLVER</a> </li>');
+                        // }
+
+                        
 
                     
-                    }
+//                     }
 
 }
 
-$carnet1 = new Carnet('46454567H', 'Mariaa xd', 'calle hola', '2020-03-28', '1999-03-28', '012');
+$carnet1 = new Carnet('46454567l', 'Mariaa xd', 'calle holano', '2015-03-28', '1999-03-28', '012');
 
-$carnet2 = new Carnet('12345678z', 'Roberto xd', 'calle las avenidas', '1999-03-28', '2006-03-03', '013');
+// $carnet2 = new Carnet('12345678z', 'Roberto xd', 'calle las avenidas', '1999-03-28', '2006-03-03', 'Colegio papu', '013');
 
 
-$carnet3 = new Carnet('4324325t', 'Maria xd', 'calle pereu garau', '1999-03-28', '1999-05-23', '014');
+// $carnet3 = new Carnet('4324325t', 'Maria xd', 'calle pereu garau', '1999-03-28', '1999-05-23', '014');
 
 $carnet1->visual();
-$carnet2->visual();
-$carnet3->visual();
+// $carnet2->visual();
+// $carnet3->visual();
 
 
 

@@ -30,7 +30,7 @@ echo('<br>');
 print_r($letraOK);
 echo('</pre>');
 
-if($letraDNI == $letraOK){
+if($letraDNI = $letraOK){
 
     // INICIAR SECCION: Podemos iniciae
 

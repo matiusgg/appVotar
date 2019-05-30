@@ -9,12 +9,12 @@ interface SeguridadMetodo {
       
           // Obtiene letra del DNI 
       
-            $calcular = (int) ($dni / 23);
-            $calcular *= 23;
-            $calcular = $dni - $calcular;
-            $letras = 'TRWAGMYFPDXBNJZSQVHLCKEO';
-            $letraDNI = substr ($letras, $calcular, 1);
-            return $letraDNI;
+            // $calcular = (int) ($dni / 23);
+            // $calcular *= 23;
+            // $calcular = $dni - $calcular;
+            // $letras = 'TRWAGMYFPDXBNJZSQVHLCKEO';
+            // $letraDNI = substr ($letras, $calcular, 1);
+            // return $letraDNI;
           }
 }
 

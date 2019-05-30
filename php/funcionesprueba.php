@@ -458,6 +458,39 @@ echo('</pre>');
 // ********************************************
 
 
+function colegio(){
 
+              
+    if($colegios = fopen('colegios.txt', 'w')){
+
+    $contenidocolegios = '<?php' . PHP_EOL . 
+    "define('COLEGIO', 'colegioxd');" . PHP_EOL .
+    "define('COLEGIO', 'colegio holaxd');" . PHP_EOL .
+    "define('COLEGIO', 'colegio pepe');" . PHP_EOL .
+    
+
+fwrite($colegios, $contenidocolegios);
+while(!feof($colegios)){
+
+$linea = fgets($colegios);
+}
+
+
+fclose($colegios);
+
+    }
+
+
+
+$array = file("colegios.txt", FILE_IGNORE_NEW_LINES);
+
+echo('<pre>');
+print_r($array);
+echo('</pre>');
+
+
+}
+
+echo(colegio());
 
 ?>

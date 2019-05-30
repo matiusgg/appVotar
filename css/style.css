@@ -1,0 +1,10 @@
+
+.botonRojo{
+    color: white;
+    background-color: red;
+        padding: 1rem;
+        font-size: 4rem;
+        box-sizing: border-box;
+        display: inline-block;
+        text-decoration: none;
+    }

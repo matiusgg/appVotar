@@ -6,7 +6,7 @@ interface ValidacionVoto{
 
     
 
-   visual
+   public function visual();
 
 }
 

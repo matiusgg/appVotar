@@ -5,6 +5,8 @@ include_once('../models/Votante.php');
 // Queremos recuperar el dato que estaba en index., el dato de $
 
 // Si tengo un archivo donde parte de el es interesante, podemos usar seecion. 
+
+// Si no ceramos seccion, porque siempre va a coger los mismos datos.
 session_start();
 
 $dniusuario = $_SESSION['dni'];
@@ -28,9 +30,66 @@ echo($letraOKEY);
 // unset $dniusuario = $_SESSION['dni'];
 
 
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+
+    <article>
+
+    <?php
+//     $dniregistro = fopen('registrodni.txt', 'w');
+// $dni = $_GET['dni'];
+// $horavoto = $_GET['horavoto'];
+
+// fwrite($dniregistro, $dni . PHP_EOL);
+// fwrite($dniregistro, $horavoto . PHP_EOL);
+
+// while(!feof($dniregistro)){
+   
+//     $linea = fgets($dniregistro);
+//     }
+
+// fclose($dniregistro);
+
+
+// $arraydni = file("registrodni.txt", FILE_IGNORE_NEW_LINES);
+
+// echo('<pre>');
+// print_r($arraydni);
+// echo('</pre>');
+
+// $i = 0;
+
+// foreach($array AS $valor){
+
+//     if($valor[$i]){
+
+// $carnet1
+//     }
+// $i++;
+// }
 
 
 
+?>
 
+    </article>
+    </section>
+</body>
+</html>
+
+<?php
+
+// session_destroy();
 
 ?>
